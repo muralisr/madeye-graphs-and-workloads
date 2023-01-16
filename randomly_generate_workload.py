@@ -65,3 +65,7 @@ if __name__ == "__main__":
 
     for i in range(len(workloads)):
         print(f"{i+1}:{workloads[i]}")
+
+    with open("generated_workload.txt", "w") as f:
+        for i in range(len(workloads)):
+            f.write(f"{i+1}:{workloads[i]}\n")
