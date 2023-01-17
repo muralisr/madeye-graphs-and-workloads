@@ -1,10 +1,6 @@
 import random
-
+from datetime import datetime
 random.seed(100)
-
-small_workload_size_bounds = (2,3)
-medium_workload_size_bounds = (4,8)
-large_workload_size_bounds = (9,10)
 
 class Query():
     def __init__(self):
@@ -52,20 +48,14 @@ def generate_random_workload(workload_size=5):
     return (workload, type)
 
 if __name__ == "__main__":
-    num_small_workloads = 4
-    num_medium_workloads = 12
-    num_large_workloads = 4
+    num_workloads_reqd = 20
     workloads = []
-    for _ in range(num_small_workloads):
-        workloads.append(generate_random_workload(random.randint(small_workload_size_bounds[0], small_workload_size_bounds[1])))
-    for _ in range(num_medium_workloads):
-        workloads.append(generate_random_workload(random.randint(medium_workload_size_bounds[0],medium_workload_size_bounds[1])))
-    for _ in range(num_large_workloads):
-        workloads.append(generate_random_workload(random.randint(large_workload_size_bounds[0],large_workload_size_bounds[1])))
+    for _ in range(num_workloads_reqd):
+        workloads.append(generate_random_workload(random.randint(2, 20)))
 
     for i in range(len(workloads)):
         print(f"{i+1}:{workloads[i]}")
 
-    with open("generated_workload.txt", "w") as f:
+    with open(f"generated workload {datetime.now()}.txt", "w") as f:
         for i in range(len(workloads)):
             f.write(f"{i+1}:{workloads[i]}\n")
