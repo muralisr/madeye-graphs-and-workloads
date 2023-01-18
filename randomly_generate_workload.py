@@ -9,10 +9,10 @@ class Query():
         self.model = ""
 
     def __str__(self) -> str:
-        return f"{self.query}-{self.object}-{self.model}"
+        return f'(\'{self.model}\', \'{self.query}\', \'{self.object}\')'
 
     def __repr__(self) -> str:
-        return f"{self.query}-{self.object}-{self.model}"
+        return f'(\'{self.model}\', \'{self.query}\', \'{self.object}\')'
 
 def get_random_model():
     options_for_model = ["tiny-yolov4", "yolov4", "frcnn", "ssd"]
@@ -33,19 +33,22 @@ def generate_random_workload(workload_size=5):
     workload = []
     for _ in range(workload_size):
         query = get_random_query()
-        obj = get_random_object()
+        if query == 'aggregate':
+            obj = 'person'
+        else:
+            obj = get_random_object()
         model = get_random_model()
         q = Query()
         q.query = query
         q.object = obj
         q.model = model
         workload.append(q)
-    type = "small"
-    if workload_size >= medium_workload_size_bounds[0] and workload_size <= medium_workload_size_bounds[1]:
-        type = "medium"
-    elif workload_size >= large_workload_size_bounds[0] and workload_size <= large_workload_size_bounds[1]:
-        type = "large"    
-    return (workload, type)
+#    type = "small"
+#    if workload_size >= medium_workload_size_bounds[0] and workload_size <= medium_workload_size_bounds[1]:
+#        type = "medium"
+#    elif workload_size >= large_workload_size_bounds[0] and workload_size <= large_workload_size_bounds[1]:
+#        type = "large"    
+    return (workload, None)
 
 if __name__ == "__main__":
     num_workloads_reqd = 20
