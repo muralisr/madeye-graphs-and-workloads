@@ -25,7 +25,7 @@ def get_random_object():
     return options_for_object[index]
 
 def get_random_query():
-    options_for_query = ["count", "classify", "detect", "aggregate"]
+    options_for_query = ["count", "binary-classification", "detection", "aggregate-count"]
     index = random.randint(0, len(options_for_query) - 1)
     return options_for_query[index]
 
