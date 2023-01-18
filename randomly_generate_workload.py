@@ -15,7 +15,7 @@ class Query():
         return f'(\'{self.model}\', \'{self.query}\', \'{self.object}\')'
 
 def get_random_model():
-    options_for_model = ["tiny-yolov4", "yolov4", "frcnn", "ssd"]
+    options_for_model = ["tiny-yolov4", "yolov4", "faster-rcnn", "ssd"]
     index = random.randint(0, len(options_for_model) - 1)
     return options_for_model[index]
 
@@ -33,7 +33,7 @@ def generate_random_workload(workload_size=5):
     workload = []
     for _ in range(workload_size):
         query = get_random_query()
-        if query == 'aggregate':
+        if query == 'aggregate-count':
             obj = 'person'
         else:
             obj = get_random_object()
